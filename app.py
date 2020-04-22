@@ -49,9 +49,9 @@ def handle_message_test(event):
 
 def getOilData():
     try:
-        readData = pd.read_html('https://www2.moeaboe.gov.tw/oil102/oil2017/A01/A0108/tablesprices.asp', header=0)[1]  # 取得網頁上的表格資訊
-    except:
         readData = pd.read_html('https://www2.moeaboe.gov.tw/oil102/oil2017/A01/A0108/tablesprices.asp', header=0)[0]  # 取得網頁上的表格資訊
+    except:
+        readData = pd.read_html('https://www2.moeaboe.gov.tw/oil102/oil2017/A01/A0108/tablesprices.asp', header=0)[1]  # 取得網頁上的表格資訊
     app.logger.info("getOilData: %s" % readData[0:2])
     oilValue = readData.loc[1].values.tolist()
     getOil = str('油品供應商: %s\n98無鉛汽油: %s\n95無鉛汽油: %s\n92無鉛汽油: %s\n超(高)級柴油: %s\n計價單位: %s\n施行日期: %s' %
